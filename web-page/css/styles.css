@@ -201,7 +201,7 @@ button + button {
     align-items: center;
 }
 
-#nav-links a, #social-links a {
+#nav-links a {
     margin: 0 15px;
     padding: 10px 20px;
     color: white; /* White text */
@@ -210,7 +210,37 @@ button + button {
     transition: background-color 0.3s, transform 0.3s;
 }
 
-#nav-links a:hover, #social-links a:hover {
+#nav-links a:hover {
     background-color: #444; /* Slightly darker grey */
     transform: translateY(-2px);
+}
+
+#social-links a {
+    margin: 0 5px;
+    color: white; /* White text */
+    font-size: 1.5em; /* Adjust icon size */
+    transition: color 0.3s, transform 0.3s;
+}
+
+#social-links a:hover {
+    color: #ccc; /* Lighter grey */
+    transform: translateY(-2px);
+}
+
+/* Footer styles */
+#footer {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    background-color: #333; /* Dark grey */
+    color: white; /* White text */
+    margin-top: auto;
+    #footer {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    background-color: #333; /* Dark grey */
+    color: white; /* White text */
+    font-size: 0.5em;
+    margin-top: auto;
 }
