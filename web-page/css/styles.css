@@ -8,6 +8,7 @@ body {
     height: 100vh;
     background-color: #d3d3d3; /* Light grey */
     color: #000; /* Black text */
+    overflow-x: hidden; /* Prevent horizontal overflow */
 }
 
 #header {
@@ -179,4 +180,37 @@ button + button {
 .analysis-value {
     color: #333; /* Dark grey */
     font-size: 1.5em;
+}
+
+/* New styles for the sticky navbar */
+#navbar {
+    position: -webkit-sticky; /* For Safari */
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background-color: #333; /* Dark grey */
+    z-index: 1000; /* Ensure it stays on top */
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#nav-links, #social-links {
+    display: flex;
+    align-items: center;
+}
+
+#nav-links a, #social-links a {
+    margin: 0 15px;
+    padding: 10px 20px;
+    color: white; /* White text */
+    text-decoration: none;
+    font-size: 1.2em;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+#nav-links a:hover, #social-links a:hover {
+    background-color: #444; /* Slightly darker grey */
+    transform: translateY(-2px);
 }
