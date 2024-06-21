@@ -1,8 +1,8 @@
 {
-  "floorHeight": "3.0",
-  "floorNum": "16",
-  "attractorPtSeed": "0",
-  "attractorPtStrength": "0.12",
+  "floorHeight": 3,
+  "floorNum": 10,
+  "attractorPtSeed": 3,
+  "attractorPtStrength": 0.31,
   "runAnalysis": false,
   "showAnalysis": false,
   "showFacade": false

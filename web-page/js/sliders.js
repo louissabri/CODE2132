@@ -57,22 +57,22 @@ async function updateJsonFile() {
 // Slider functionality
 document.getElementById('floorHeight').addEventListener('input', function(event) {
     document.getElementById('value1').textContent = event.target.value;
-    config.slider1 = event.target.value;
+    config.floorHeight = parseFloat(event.target.value);
 });
 
 document.getElementById('floorNum').addEventListener('input', function(event) {
     document.getElementById('value2').textContent = event.target.value;
-    config.slider2 = event.target.value;
+    config.floorNum = parseInt(event.target.value, 10);
 });
 
 document.getElementById('attractorPtSeed').addEventListener('input', function(event) {
     document.getElementById('value3').textContent = event.target.value;
-    config.slider3 = event.target.value;
+    config.attractorPtSeed = parseInt(event.target.value, 10);
 });
 
 document.getElementById('attractorPtStrength').addEventListener('input', function(event) {
     document.getElementById('value4').textContent = event.target.value;
-    config.number3 = event.target.value;
+    config.attractorPtStrength = parseFloat(event.target.value);
 });
 
 // Save settings button
