@@ -1,0 +1,182 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+    background-color: #d3d3d3; /* Light grey */
+    color: #000; /* Black text */
+}
+
+#header {
+    text-align: center;
+    padding: 20px;
+    background-color: #d3d3d3; /* Light grey */
+    width: 100%;
+}
+
+#header h1 {
+    margin: 0;
+    font-size: 2.5em;
+    color: #333; /* Dark grey */
+}
+
+#header p {
+    margin: 0;
+    font-size: 1.2em;
+    color: #333; /* Dark grey */
+}
+
+#main {
+    display: flex;
+    flex: 1;
+    width: 100%;
+}
+
+#viewer-container {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #d3d3d3; /* Light grey */
+}
+
+#viewer {
+    width: 90%;
+    height: 90%;
+    background-color: #d3d3d3; /* Light grey */
+    border: 2px solid #333; /* Dark grey border */
+}
+
+#info {
+    flex: 1;
+    padding: 20px;
+    background-color: #f0f0f0; /* Slightly lighter grey */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#controls, #analysis {
+    width: 100%;
+}
+
+#controls h2, #analysis h2 {
+    color: #333; /* Dark grey */
+    margin-bottom: 10px;
+    font-size: 1.5em;
+}
+
+#controls label, #analysis .analysis-label {
+    display: block;
+    margin-bottom: 5px;
+    color: #666; /* Grey */
+}
+
+input[type="range"], input[type="number"] {
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #333; /* Dark grey */
+    color: white;
+    border: 1px solid #333; /* Dark grey */
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover {
+    background-color: #444; /* Slightly darker grey */
+    transform: translateY(-2px);
+}
+
+button + button {
+    margin-left: 10px;
+}
+
+#toggle-buttons {
+    width: 100%;
+    margin-top: 20px;
+    text-align: center;
+}
+
+#toggleAnalysisButton, #toggleFacadeButton {
+    width: 48%;
+    padding: 10px;
+    background-color: #ff6666; /* Initial red color */
+    color: black; /* Black text */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+#toggleAnalysisButton:hover, #toggleFacadeButton:hover {
+    background-color: #ff4949; /* Slightly darker red */
+    transform: translateY(-2px);
+}
+
+#toggleAnalysisButton.active, #toggleFacadeButton.active {
+    background-color: #66ff66; /* Green when active */
+    color: black; /* Black text */
+}
+
+#toggleAnalysisButton.active:hover, #toggleFacadeButton.active:hover {
+    background-color: #33cc33; /* Slightly darker green */
+}
+
+#run-analysis-container {
+    width: 100%;
+    margin-top: 20px;
+    text-align: center;
+}
+
+#runAnalysisButton {
+    width: 100%;
+    padding: 15px;
+    background-color: #ff6666; /* Distinct red color */
+    color: black; /* Black text */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+#runAnalysisButton.active {
+    background-color: #66ff66; /* Green when active */
+    color: black; /* Black text */
+}
+
+#runAnalysisButton:hover {
+    transform: translateY(-2px);
+}
+
+#runAnalysisButton.active:hover {
+    background-color: #33cc33; /* Slightly darker green */
+}
+
+.analysis-item {
+    margin: 10px 0;
+}
+
+.analysis-label {
+    color: #333; /* Dark grey */
+    font-size: 1.2em;
+}
+
+.analysis-value {
+    color: #333; /* Dark grey */
+    font-size: 1.5em;
+}

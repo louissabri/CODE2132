@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facade Analysis Viewer</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div id="header">
+    <h1>Facade Analysis Viewer</h1>
+    <p>Explore real-time model analysis and statistics.</p>
+</div>
+<div id="main">
+    <div id="viewer-container">
+        <div id="viewer"></div>
+    </div>
+    <div id="info">
+        <div id="controls">
+            <h2>Adjust Model Parameters</h2>
+            <div>
+                <label for="slider1">Parameter 1:</label>
+                <input type="range" id="slider1" name="slider1" min="0" max="100" value="50">
+                <span id="value1">50</span>
+            </div>
+            <div>
+                <label for="slider2">Parameter 2:</label>
+                <input type="range" id="slider2" name="slider2" min="0" max="100" value="50">
+                <span id="value2">50</span>
+            </div>
+            <div>
+                <label for="slider3">Parameter 3:</label>
+                <input type="range" id="slider3" name="slider3" min="0" max="100" value="50">
+                <span id="value3">50</span>
+            </div>
+            <div>
+                <label for="number3">Parameter 4:</label>
+                <input type="number" id="number3" name="number3" min="0" max="100" value="50">
+            </div>
+            <button id="saveButton">Save Settings</button>
+            <button id="refreshButton">Refresh Model</button>
+            <div id="toggle-buttons">
+                <button id="toggleAnalysisButton">Show Analysis</button>
+                <button id="toggleFacadeButton">Hide Facade</button>
+            </div>
+            <div id="run-analysis-container">
+                <button id="runAnalysisButton">Run Analysis</button>
+            </div>
+        </div>
+        <div id="analysis">
+            <h2>Model Analysis Outputs</h2>
+            <div class="analysis-item">
+                <span class="analysis-label">Number of Glass Panes:</span>
+                <span class="analysis-value" id="numberGlassPanes">0</span>
+            </div>
+            <div class="analysis-item">
+                <span class="analysis-label">Total Cost of Panels:</span>
+                <span class="analysis-value" id="totalCostPanels">0</span>
+            </div>
+            <!-- Add more fields here if needed -->
+        </div>
+    </div>
+</div>
+<!-- CDN for Three.js and Controls -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/pmrem/PMREMGenerator.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/pmrem/PMREMCubeUVPacker.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/pmrem/PMREMCubeUVRenderer.js"></script>
+<!-- Custom Scripts -->
+<script src="js/viewer.js"></script>
+<script src="js/sliders.js"></script>
+</body>
+</html>
