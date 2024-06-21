@@ -1,10 +1,12 @@
 // Configuration object
 let config = {
-    slider1: 50,
-    slider2: 50,
-    slider3: 50,
-    number3: 50,
-    runAnalysis: false
+    floorHeight: 3.0,
+    floorNum: 16,
+    attractorPtSeed: 0,
+    attractorPtStrength: 0.12,
+    runAnalysis: false,
+    showAnalysis: false,
+    showFacade: false
 };
 
 // Load existing config from config.json
@@ -12,14 +14,21 @@ async function loadConfig() {
     try {
         const response = await fetch('assets/config.json');
         if (response.ok) {
-            config = await response.json();
-            document.getElementById('slider1').value = config.slider1;
-            document.getElementById('slider2').value = config.slider2;
-            document.getElementById('slider3').value = config.slider3;
-            document.getElementById('number3').value = config.number3;
-            document.getElementById('value1').textContent = config.slider1;
-            document.getElementById('value2').textContent = config.slider2;
-            document.getElementById('value3').textContent = config.slider3;
+            const data = await response.json();
+            config.floorHeight = parseFloat(data.floorHeight);
+            config.floorNum = parseInt(data.floorNum, 10);
+            config.attractorPtSeed = parseInt(data.attractorPtSeed, 10);
+            config.attractorPtStrength = parseFloat(data.attractorPtStrength);
+            config.runAnalysis = data.runAnalysis;
+            config.showAnalysis = data.showAnalysis;
+            config.showFacade = data.showFacade;
+
+            document.getElementById('floorHeight').value = config.floorHeight;
+            document.getElementById('floorNum').value = config.floorNum;
+            document.getElementById('attractorPtSeed').value = config.attractorPtSeed;
+            document.getElementById('attractorPtStrength').value = config.attractorPtStrength;
+            document.getElementById('value1').textContent = config.floorHeight;
+
             updateRunAnalysisButton();
         } else {
             console.error('Failed to load config');
@@ -46,22 +55,23 @@ async function updateJsonFile() {
 }
 
 // Slider functionality
-document.getElementById('slider1').addEventListener('input', function(event) {
+document.getElementById('floorHeight').addEventListener('input', function(event) {
     document.getElementById('value1').textContent = event.target.value;
     config.slider1 = event.target.value;
 });
 
-document.getElementById('slider2').addEventListener('input', function(event) {
+document.getElementById('floorNum').addEventListener('input', function(event) {
     document.getElementById('value2').textContent = event.target.value;
     config.slider2 = event.target.value;
 });
 
-document.getElementById('slider3').addEventListener('input', function(event) {
+document.getElementById('attractorPtSeed').addEventListener('input', function(event) {
     document.getElementById('value3').textContent = event.target.value;
     config.slider3 = event.target.value;
 });
 
-document.getElementById('number3').addEventListener('input', function(event) {
+document.getElementById('attractorPtStrength').addEventListener('input', function(event) {
+    document.getElementById('value4').textContent = event.target.value;
     config.number3 = event.target.value;
 });
 
