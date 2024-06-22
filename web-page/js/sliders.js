@@ -6,7 +6,7 @@ let config = {
     attractorPtStrength: 0.12,
     runAnalysis: false,
     showAnalysis: false,
-    showFacade: false
+    showFacade: true
 };
 
 // Load existing config from config.json
@@ -30,6 +30,8 @@ async function loadConfig() {
             document.getElementById('value1').textContent = config.floorHeight;
 
             updateRunAnalysisButton();
+            updateToggleButtonState('toggleAnalysisButton', config.showAnalysis, 'Show Analysis', 'Hide Analysis');
+            updateToggleButtonState('toggleFacadeButton', config.showFacade, 'Show Facade', 'Hide Facade');
         } else {
             console.error('Failed to load config');
         }
@@ -100,6 +102,8 @@ document.getElementById('toggleAnalysisButton').addEventListener('click', functi
     const isActive = button.classList.toggle('active');
     button.textContent = isActive ? 'Hide Analysis' : 'Show Analysis';
     updateAnalysisMeshVisibility(isActive);
+    config.showAnalysis = isActive;
+    updateJsonFile();
 });
 
 // Toggle Facade button
@@ -108,6 +112,8 @@ document.getElementById('toggleFacadeButton').addEventListener('click', function
     const isActive = button.classList.toggle('active');
     button.textContent = isActive ? 'Hide Facade' : 'Show Facade';
     updateFacadeVisibility(isActive);
+    config.showFacade = isActive;
+    updateJsonFile();
 });
 
 // Load config on page load
@@ -133,7 +139,6 @@ async function loadAnalysisData() {
     }
 }
 
-
 // Function to update analysis mesh visibility
 function updateAnalysisMeshVisibility(isVisible) {
     if (window.updateAnalysisMeshVisibilityInViewer) {
@@ -146,6 +151,13 @@ function updateFacadeVisibility(isVisible) {
     if (window.updateFacadeVisibilityInViewer) {
         window.updateFacadeVisibilityInViewer(isVisible);
     }
+}
+
+// Function to update the state of toggle buttons
+function updateToggleButtonState(buttonId, isActive, inactiveText, activeText) {
+    const button = document.getElementById(buttonId);
+    button.classList.toggle('active', isActive);
+    button.textContent = isActive ? activeText : inactiveText;
 }
 
 // Refresh button functionality
