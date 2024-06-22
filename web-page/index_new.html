@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facade Analysis Viewer</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        #viewer {
+            height: 600px;
+        }
+        .night-mode {
+            background-color: #2d2d2d;
+            color: #cccccc;
+        }
+        .night-mode .bg-white {
+            background-color: #444444 !important;
+        }
+        .night-mode .bg-gray-100 {
+            background-color: #333333 !important;
+        }
+        .night-mode .bg-gray-200 {
+            background-color: #555555 !important;
+        }
+        .night-mode .bg-gray-800 {
+            background-color: #1a1a1a !important;
+        }
+        .night-mode .text-gray-800 {
+            color: #cccccc !important;
+        }
+        .night-mode .text-gray-600 {
+            color: #999999 !important;
+        }
+        .night-mode .text-white {
+            color: #cccccc !important;
+        }
+        .night-mode button {
+            background-color: #555555 !important;
+            color: #cccccc !important;
+        }
+        .night-mode button:hover {
+            background-color: #666666 !important;
+        }
+        .night-mode .border-gray-800 {
+            border-color: #999999 !important;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <nav class="bg-white shadow mb-8 sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div>
+                <a href="#" class="text-2xl font-bold text-gray-800">Facade Analysis Viewer</a>
+            </div>
+            <div class="space-x-4">
+                <a href="index.html" class="text-gray-800 hover:text-gray-600 transition">Home</a>
+                <a href="inspiration.html" class="text-gray-800 hover:text-gray-600 transition">Inspiration</a>
+                <a href="how.html" class="text-gray-800 hover:text-gray-600 transition">How it works</a>
+                <a href="https://github.com/louissabri" target="_blank"><i class="fab fa-github text-gray-800 hover:text-gray-600 transition"></i></a>
+                <a href="https://www.instagram.com/louissabrii" target="_blank"><i class="fab fa-instagram text-gray-800 hover:text-gray-600 transition"></i></a>
+                <a href="https://www.linkedin.com/in/louissabri" target="_blank"><i class="fab fa-linkedin text-gray-800 hover:text-gray-600 transition"></i></a>
+                <button id="toggleNightMode" class="bg-gray-800 text-white px-3 py-2 rounded transition duration-300 ease-in-out hover:bg-gray-700">Night Mode</button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="bg-gray-200 py-6">
+        <div class="container mx-auto text-center">
+            <h1 class="text-4xl font-bold text-gray-800">Facade Analysis Viewer</h1>
+            <p class="text-xl text-gray-600">Explore real-time model analysis and statistics</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-4">
+        <div class="flex">
+            <div id="viewer-container" class="flex-1 bg-gray-200 rounded-lg shadow-lg">
+                <div id="viewer" class="w-full h-full"></div>
+            </div>
+            <aside class="w-1/3 p-4 bg-white rounded-lg shadow-lg ml-4">
+                <div id="controls" class="mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2">Adjust Model Parameters</h2>
+                    <label for="floorHeight" class="block text-gray-600">Floor Height:</label>
+                    <input type="range" id="floorHeight" name="Floor Height" min="1.0" max="5.0" step="0.1" value="3.0" class="w-full">
+                    <span id="value1" class="block text-gray-800">3.0</span>
+                    
+                    <label for="floorNum" class="block text-gray-600 mt-2">Number of Floors:</label>
+                    <input type="range" id="floorNum" name="Floor Number" min="1" max="50" value="16" class="w-full">
+                    <span id="value2" class="block text-gray-800">16</span>
+                    
+                    <label for="attractorPtSeed" class="block text-gray-600 mt-2">Attractor Point Seed:</label>
+                    <input type="range" id="attractorPtSeed" name="Attractor Point Seed" min="0" max="10" value="0" class="w-full">
+                    <span id="value3" class="block text-gray-800">0</span>
+                    
+                    <label for="attractorPtStrength" class="block text-gray-600 mt-2">Attractor Point Strength:</label>
+                    <input type="range" id="attractorPtStrength" name="Attractor Point Strength" min="0" max="1" step="0.01" value="0.12" class="w-full">
+                    <span id="value4" class="block text-gray-800">0.12</span>
+                    
+                    <button id="saveButton" class="mt-4 w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">Save Settings</button>
+                    <button id="refreshButton" class="mt-2 w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">Refresh Model</button>
+                </div>
+                
+                <div id="toggle-buttons" class="mt-4">
+                    <button id="toggleAnalysisButton" class="w-full bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition">Show Analysis</button>
+                    <button id="toggleFacadeButton" class="mt-2 w-full bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition">Hide Facade</button>
+                </div>
+                
+                <div id="run-analysis-container" class="mt-4">
+                    <button id="runAnalysisButton" class="w-full bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition">Run Analysis</button>
+                </div>
+                
+                <div id="analysis" class="mt-4">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2">Model Analysis Outputs</h2>
+                    <div class="analysis-item mb-2">
+                        <span class="block text-gray-600">Number of Glass Panes:</span>
+                        <span id="numberGlassPanes" class="block text-gray-800 text-xl">0</span>
+                    </div>
+                    <div class="analysis-item">
+                        <span class="block text-gray-600">Total Cost of Panels:</span>
+                        <span id="totalCostPanels" class="block text-gray-800 text-xl">0</span>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 py-4 mt-8">
+        <div class="container mx-auto text-center text-white">
+            <p>This project includes code generated with the assistance of ChatGPT, an AI language model developed by OpenAI.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="viewer.js"></script>
+    <script src="sliders.js"></script>
+    <script>
+        // Night mode toggle
+        document.getElementById('toggleNightMode').addEventListener('click', function() {
+            document.body.classList.toggle('night-mode');
+            this.textContent = document.body.classList.contains('night-mode') ? 'Day Mode' : 'Night Mode';
+        });
+
+        // Initialize slider values display
+        document.getElementById('floorHeight').addEventListener('input', function(event) {
+            document.getElementById('value1').textContent = event.target.value;
+        });
+
+        document.getElementById('floorNum').addEventListener('input', function(event) {
+            document.getElementById('value2').textContent = event.target.value;
+        });
+
+        document.getElementById('attractorPtSeed').addEventListener('input', function(event) {
+            document.getElementById('value3').textContent = event.target.value;
+        });
+
+        document.getElementById('attractorPtStrength').addEventListener('input', function(event) {
+            document.getElementById('value4').textContent = event.target.value;
+        });
+    </script>
+</body>
+</html>

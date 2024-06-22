@@ -28,6 +28,9 @@ async function loadConfig() {
             document.getElementById('attractorPtSeed').value = config.attractorPtSeed;
             document.getElementById('attractorPtStrength').value = config.attractorPtStrength;
             document.getElementById('value1').textContent = config.floorHeight;
+            document.getElementById('value2').textContent = config.floorNum;
+            document.getElementById('value3').textContent = config.attractorPtSeed;
+            document.getElementById('value4').textContent = config.attractorPtStrength;
 
             updateRunAnalysisButton();
         } else {
@@ -91,23 +94,26 @@ document.getElementById('runAnalysisButton').addEventListener('click', function(
 function updateRunAnalysisButton() {
     const button = document.getElementById('runAnalysisButton');
     button.textContent = config.runAnalysis ? 'Stop Analysis' : 'Run Analysis';
-    button.classList.toggle('active', config.runAnalysis);
+    button.classList.toggle('bg-red-500', !config.runAnalysis);
+    button.classList.toggle('bg-green-500', config.runAnalysis);
 }
 
 // Toggle Analysis button (controls visibility of analysis mesh)
 document.getElementById('toggleAnalysisButton').addEventListener('click', function() {
     const button = this;
-    const isActive = button.classList.toggle('active');
-    button.textContent = isActive ? 'Hide Analysis' : 'Show Analysis';
-    updateAnalysisMeshVisibility(isActive);
+    const isActive = button.classList.toggle('bg-red-500');
+    button.classList.toggle('bg-green-500', !isActive);
+    button.textContent = isActive ? 'Show Analysis' : 'Hide Analysis';
+    updateAnalysisMeshVisibility(!isActive);
 });
 
 // Toggle Facade button
 document.getElementById('toggleFacadeButton').addEventListener('click', function() {
     const button = this;
-    const isActive = button.classList.toggle('active');
-    button.textContent = isActive ? 'Hide Facade' : 'Show Facade';
-    updateFacadeVisibility(isActive);
+    const isActive = button.classList.toggle('bg-red-500');
+    button.classList.toggle('bg-green-500', !isActive);
+    button.textContent = isActive ? 'Show Facade' : 'Hide Facade';
+    updateFacadeVisibility(!isActive);
 });
 
 // Load config on page load
