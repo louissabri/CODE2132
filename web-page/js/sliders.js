@@ -120,7 +120,11 @@ async function loadAnalysisData() {
         if (response.ok) {
             const analysisData = await response.json();
             document.getElementById('numberGlassPanes').textContent = analysisData["number of glass panes"];
-            document.getElementById('totalCostPanels').textContent = analysisData["total cost of panels"];
+            document.getElementById('totalCostPanels').textContent = `$${Number(analysisData["total cost of panels"]).toLocaleString()}`;
+            document.getElementById('totalEmbodiedCarbonPanels').textContent = `${Number(analysisData["total embodied carbon of panels"]).toLocaleString()} kg CO2e`;
+            document.getElementById('numberMetalFins').textContent = analysisData["number of metal fins"];
+            document.getElementById('totalCostMetalFins').textContent = `$${Number(analysisData["total cost of metal fins"]).toLocaleString()}`;
+            document.getElementById('totalEmbodiedCarbonFins').textContent = `${Number(analysisData["total embodied carbon of fins"]).toLocaleString()} kg CO2e`;
         } else {
             console.error('Failed to load analysis data');
         }
@@ -128,6 +132,7 @@ async function loadAnalysisData() {
         console.error('Error fetching analysis data:', error);
     }
 }
+
 
 // Function to update analysis mesh visibility
 function updateAnalysisMeshVisibility(isVisible) {

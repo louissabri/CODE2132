@@ -97,6 +97,26 @@ async function loadAnalysisMesh() {
     }
 }
 
+// Load analysis data
+async function loadAnalysisData() {
+    try {
+        const response = await fetch('assets/analysis_data.json');
+        if (response.ok) {
+            const analysisData = await response.json();
+            document.getElementById('numberGlassPanes').textContent = analysisData["number of glass panes"];
+            document.getElementById('totalCostPanels').textContent = `$${Number(analysisData["total cost of panels"]).toLocaleString()}`;
+            document.getElementById('totalEmbodiedCarbonPanels').textContent = `${Number(analysisData["total embodied carbon of panels"]).toLocaleString()} kg CO2e`;
+            document.getElementById('numberMetalFins').textContent = analysisData["number of metal fins"];
+            document.getElementById('totalCostMetalFins').textContent = `$${Number(analysisData["total cost of metal fins"]).toLocaleString()}`;
+            document.getElementById('totalEmbodiedCarbonFins').textContent = `${Number(analysisData["total embodied carbon of fins"]).toLocaleString()} kg CO2e`;
+        } else {
+            console.error('Failed to load analysis data');
+        }
+    } catch (error) {
+        console.error('Error fetching analysis data:', error);
+    }
+}
+
 // Set initial states
 let isAnalysisVisible = false;
 let isFacadeVisible = true;
@@ -143,20 +163,7 @@ async function updateModelAndAnalysis() {
     }
 
     // Load and update the analysis data
-    try {
-        const analysisResponse = await fetch('assets/analysis_data.json'); // Updated filename
-        if (analysisResponse.ok) {
-            const analysisData = await analysisResponse.json();
-            document.getElementById('numberGlassPanes').textContent = analysisData["number of glass panes"];
-            document.getElementById('totalCostPanels').textContent = analysisData["total cost of panels"];
-        } else {
-            console.error('Failed to load analysis data');
-        }
-        renderer.render(scene, camera); // Ensure rendering after loading analysis
-
-    } catch (error) {
-        console.error('Error updating model and analysis:', error);
-    }
+    await loadAnalysisData();
 }
 
 // Set up SSE to listen for updates

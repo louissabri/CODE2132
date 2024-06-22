@@ -228,19 +228,12 @@ button + button {
 }
 
 /* Footer styles */
-#footer {
-    width: 100%;
-    padding: 10px;
-    text-align: center;
-    background-color: #333; /* Dark grey */
-    color: white; /* White text */
-    margin-top: auto;
     #footer {
     width: 100%;
     padding: 10px;
     text-align: center;
     background-color: #333; /* Dark grey */
     color: white; /* White text */
-    font-size: 0.5em;
+    font-size: 0.7em;
     margin-top: auto;
-}g
+}

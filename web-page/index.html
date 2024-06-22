@@ -12,7 +12,7 @@
         <div id="nav-links">
             <a href="index.html">Home</a>
             <a href="inspiration.html">Inspiration</a>
-            <a href=sources.html>Sources</a>
+            <a href="sources.html">Sources</a>
         </div>
         <div id="social-links">
             <a href="https://github.com/louissabri" target="_blank"><i class="fab fa-github"></i></a>
@@ -20,73 +20,92 @@
             <a href="https://www.linkedin.com/in/louissabri" target="_blank"><i class="fab fa-linkedin"></i></a>
         </div>
     </div>
-<div id="header">
-    <h1>Facade Analysis Viewer</h1>
-    <p>Woah! Check out this sick facade!</p>
-</div>
-<div id="main">
-    <div id="viewer-container">
-        <div id="viewer"></div>
+    <div id="header">
+        <h1>Facade Analysis Viewer</h1>
+        <p>Woah! Check out this sick facade!</p>
     </div>
-    <div id="info">
-        <div id="controls">
-            <h2>Adjust Model Parameters</h2>
-            <div>
-                <label for="floorHeight">Floor Height:</label>
-                <input type="range" id="floorHeight" name="Floor Height" min="1.0" max="5.0" step="0.1" value="3.0">
-                <span id="value1">3.0</span>
+    <div id="main">
+        <div id="viewer-container">
+            <div id="viewer"></div>
+        </div>
+        <div id="info">
+            <div id="controls">
+                <h2>Adjust Model Parameters</h2>
+                <div>
+                    <label for="floorHeight">Floor Height:</label>
+                    <input type="range" id="floorHeight" name="Floor Height" min="1.0" max="5.0" step="0.1" value="3.0">
+                    <span id="value1">3.0</span>
+                </div>
+                <div>
+                    <label for="floorNum">Number of Floors:</label>
+                    <input type="range" id="floorNum" name="Floor Number" min="1" max="50" value="16">
+                    <span id="value2">16</span>
+                </div>
+                <div>
+                    <label for="attractorPtSeed">Attractor Point Seed:</label>
+                    <input type="range" id="attractorPtSeed" name="Attractor Point Seed" min="0" max="10" value="0">
+                    <span id="value3">0</span>
+                </div>
+                <div>
+                    <label for="attractorPtStrength">Attractor Point Strength:</label>
+                    <input type="range" id="attractorPtStrength" name="Attractor Point Strength" min="0" max="1" step="0.01" value="0.12">
+                    <span id="value4">0.12</span>
+                </div>
+                <button id="saveButton">Save Settings</button>
+                <button id="refreshButton">Refresh Model</button>
+                <div id="toggle-buttons">
+                    <button id="toggleAnalysisButton">Show Analysis</button>
+                    <button id="toggleFacadeButton">Hide Facade</button>
+                </div>
+                <div id="run-analysis-container">
+                    <button id="runAnalysisButton">Run Analysis</button>
+                </div>
             </div>
-            <div>
-                <label for="floorNum">Number of Floors:</label>
-                <input type="range" id="floorNum" name="Floor Number" min="1" max="50" value="16">
-                <span id="value2">16</span>
-            </div>
-            <div>
-                <label for="attractorPtSeed">Attractor Point Seed:</label>
-                <input type="range" id="attractorPtSeed" name="Attractor Point Seed" min="0" max="10" value="0">
-                <span id="value3">0</span>
-            </div>
-            <div>
-                <label for="attractorPtStrength">Attractor Point Strength:</label>
-                <input type="range" id="attractorPtStrength" name="Attractor Point Strength" min="0" max="1" step="0.01" value="0.12">
-                <span id="value4">0.12</span>
-            </div>
-            <button id="saveButton">Save Settings</button>
-            <button id="refreshButton">Refresh Model</button>
-            <div id="toggle-buttons">
-                <button id="toggleAnalysisButton">Show Analysis</button>
-                <button id="toggleFacadeButton">Hide Facade</button>
-            </div>
-            <div id="run-analysis-container">
-                <button id="runAnalysisButton">Run Analysis</button>
+            <div id="analysis">
+                <h2>Model Analysis Outputs</h2>
+                <div class="analysis-item">
+                    <span class="analysis-label">Number of Glass Panes:</span>
+                    <span class="analysis-value" id="numberGlassPanes">0</span>
+                </div>
+                <div class="analysis-item">
+                    <span class="analysis-label">Total Cost of Panels:</span>
+                    <span class="analysis-value" id="totalCostPanels">0</span>
+                    <a href="sources.html">(ecospecifier)</a>
+                </div>
+                <div class="analysis-item">
+                    <span class="analysis-label">Total Embodied Carbon of Panels:</span>
+                    <span class="analysis-value" id="totalEmbodiedCarbonPanels">0</span>
+                    <a href="sources.html">(ARUP)</a>
+                </div>
+                <div class="analysis-item">
+                    <span class="analysis-label">Number of Metal Fins:</span>
+                    <span class="analysis-value" id="numberMetalFins">0</span>
+                </div>
+                <div class="analysis-item">
+                    <span class="analysis-label">Total Cost of Metal Fins:</span>
+                    <span class="analysis-value" id="totalCostMetalFins">0</span>
+                    <a href="sources.html">(allmetalsinc)</a>
+                </div>
+                <div class="analysis-item">
+                    <span class="analysis-label">Total Embodied Carbon of Fins:</span>
+                    <span class="analysis-value" id="totalEmbodiedCarbonFins">0</span>
+                    <a href="sources.html">(onlinemetals)</a>
+                </div>
             </div>
         </div>
-        <div id="analysis">
-            <h2>Model Analysis Outputs</h2>
-            <div class="analysis-item">
-                <span class="analysis-label">Number of Glass Panes:</span>
-                <span class="analysis-value" id="numberGlassPanes">0</span>
-            </div>
-            <div class="analysis-item">
-                <span class="analysis-label">Total Cost of Panels:</span>
-                <span class="analysis-value" id="totalCostPanels">0</span>
-            </div>
-            <!-- Add more fields here if needed -->
-        </div>
     </div>
-</div>
-<!-- CDN for Three.js and Controls -->
-<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/pmrem/PMREMGenerator.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/pmrem/PMREMCubeUVPacker.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/pmrem/PMREMCubeUVRenderer.js"></script>
-<!-- Custom Scripts -->
-<script src="js/viewer.js"></script>
-<script src="js/sliders.js"></script>
+    <!-- CDN for Three.js and Controls -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/pmrem/PMREMGenerator.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/pmrem/PMREMCubeUVPacker.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/pmrem/PMREMCubeUVRenderer.js"></script>
+    <!-- Custom Scripts -->
+    <script src="js/viewer.js"></script>
+    <script src="js/sliders.js"></script>
 
-<div id="footer">
-    <p>This project includes code generated with the assistance of ChatGPT, an AI language model developed by OpenAI.</p>
-</div>
+    <div id="footer">
+        <p>This project includes code generated with the assistance of ChatGPT, an AI language model developed by OpenAI.</p>
+    </div>
 </body>
 </html>

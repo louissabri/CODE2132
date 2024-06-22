@@ -36,6 +36,7 @@ app.post('/update-config', (req, res) => {
             if (sseResponse) {
                 sseResponse.write('event: model-update\n');
                 sseResponse.write('data: Model updated\n\n');
+                // Removed res.flush
             }
         }, 1000); // Adjust delay as needed
     });
@@ -52,10 +53,11 @@ app.get('/events', (req, res) => {
     sseResponse = res;
 
     // Watch the model JSON file
-    const watcher = fs.watch(path.join(__dirname, 'assets/test_facade_02.json'), () => {
+    const watcher = fs.watch(path.join(__dirname, 'assets/analysis_data.json'), () => {
         debounceFileWatcher(() => {
             res.write('event: model-update\n');
             res.write('data: Model updated\n\n');
+            // Removed res.flush
         }, 1000); // Adjust delay as needed
     });
 
