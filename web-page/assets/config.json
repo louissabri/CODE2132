@@ -3,7 +3,7 @@
   "floorNum": 16,
   "attractorPtSeed": 3,
   "attractorPtStrength": 0.08,
-  "runAnalysis": false,
+  "runAnalysis": true,
   "showAnalysis": false,
-  "showFacade": true
+  "showFacade": false
 }
