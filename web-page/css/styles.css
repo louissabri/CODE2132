@@ -154,17 +154,29 @@ button {
     transition: background-color 0.3s, transform 0.3s;
 }
 
-/* General Button Styling */
-button {
-    margin-top: 10px;
-    padding: 10px 20px;
+button:hover {
+    background-color: #666666;
+    transform: scale(1.05);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+/* Specific Button Styles for Toggle States */
+button.toggle-on {
+    background-color: #007BFF;
+    color: #fff;
+}
+
+button.toggle-off {
     background-color: #555555;
     color: #f0f0f0;
-    border: 1px solid #555555;
-    border-radius: 5px;
-    cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s, transform 0.3s;
+}
+
+button.save-settings:active,
+button.refresh-model:active {
+    background-color: #32CD32; /* Temporary color on click */
 }
 
 #footer {
