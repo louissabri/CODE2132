@@ -46,7 +46,7 @@ scene.add(plane);
 // Load and update the facade model
 async function loadFacadeModel() {
     try {
-        const modelResponse = await fetch('assets/facade.json'); // Updated filename
+        const modelResponse = await fetch('assets/facade.json');
         if (modelResponse.ok) {
             const modelData = await modelResponse.json();
             const loader = new THREE.ObjectLoader();
