@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="assets\favicon.ico" type="image/x-icon">
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
     <title>Facade Analysis Viewer</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
-    <div id="navbar" class="navbar">
+    <div class="navbar">
         <div class="nav-links">
             <a href="index.html">Home</a>
             <a href="inspiration.html">Inspiration</a>
@@ -21,18 +21,16 @@
             <a href="https://www.linkedin.com/in/louissabri" target="_blank"><i class="fab fa-linkedin"></i></a>
         </div>
     </div>
-    
-    <div id="header">
+    <header>
         <h1>Facade Analysis Viewer</h1>
         <p>Woah! Check out this sick facade!</p>
-    </div>
-
-    <div id="main">
+    </header>
+    <main>
         <div id="viewer-container">
             <div id="viewer"></div>
         </div>
-        <div id="info">
-            <div id="controls">
+        <aside id="info">
+            <section id="controls">
                 <h2>Adjust Model Parameters</h2>
                 <div>
                     <label for="floorHeight">Floor Height:</label>
@@ -63,15 +61,15 @@
                 <div id="run-analysis-container">
                     <button id="runAnalysisButton">Run Analysis</button>
                 </div>
-            </div>
-            <div id="analysis">
+            </section>
+            <section id="analysis">
                 <h2>Model Analysis Outputs</h2>
                 <div class="analysis-item">
                     <span class="analysis-label">Number of Glass Panes:</span>
                     <span class="analysis-value" id="numberGlassPanes">0</span>
                 </div>
                 <div class="analysis-item">
-                    <span class="analysis-label">Total Cost of Materials for    Panels:</span>
+                    <span class="analysis-label">Total Cost of Materials for Panels:</span>
                     <span class="analysis-value" id="totalCostPanels">0</span>
                     <a href="sources.html">(ecospecifier)</a>
                 </div>
@@ -85,7 +83,7 @@
                     <span class="analysis-value" id="numberMetalFins">0</span>
                 </div>
                 <div class="analysis-item">
-                    <span class="analysis-label">Total Cost of Materals for Metal Fins:</span>
+                    <span class="analysis-label">Total Cost of Materials for Metal Fins:</span>
                     <span class="analysis-value" id="totalCostMetalFins">0</span>
                     <a href="sources.html">(allmetalsinc)</a>
                 </div>
@@ -94,21 +92,18 @@
                     <span class="analysis-value" id="totalEmbodiedCarbonFins">0</span>
                     <a href="sources.html">(onlinemetals)</a>
                 </div>
-            </div>
-        </div>
-    </div>
-    <!-- CDN for Three.js and Controls -->
+            </section>
+        </aside>
+    </main>
+    <footer>
+        <p>This project includes code generated with the assistance of ChatGPT, an AI language model developed by OpenAI.</p>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/pmrem/PMREMGenerator.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/pmrem/PMREMCubeUVPacker.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/pmrem/PMREMCubeUVRenderer.js"></script>
-    <!-- Custom Scripts -->
     <script src="js/viewer.js"></script>
     <script src="js/sliders.js"></script>
-
-    <div id="footer">
-        <p>This project includes code generated with the assistance of ChatGPT, an AI language model developed by OpenAI.</p>
-    </div>
 </body>
 </html>
