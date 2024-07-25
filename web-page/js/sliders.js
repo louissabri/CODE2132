@@ -9,6 +9,17 @@ let config = {
     showFacade: true
 };
 
+// Configuration for floors sliders
+let configFloors = {
+    gridDivisions: 7,
+    cullCurveScaleFactor: 0.75,
+    minOfficeSize: 13,
+    liftX: 1.4,
+    liftY: 1.6,
+    pathSubD: 200,
+    evalPt: "{0.24, 0.82, 0}"
+    };
+
 // Load existing config from config.json
 async function loadConfig() {
     try {
@@ -38,6 +49,35 @@ async function loadConfig() {
     } catch (error) {
         console.error('Error fetching config:', error);
     }
+    }
+
+// Load existing floors config from configFloors.json
+async function loadConfig() {
+    try {
+        const response = await fetch('assets/config.json');
+        if (response.ok) {
+            const data = await response.json();
+            floorConfig.gridDivisions = parseInt(data.gridDivisions)
+            floorConfig.cullCurveScaleFactor = parseFloat(data.cullCurveScaleFactor)
+            floorConfig.minOfficeSize = parseInt(data.minOfficeSize)
+            floorConfig.liftX = parseFloat(data.liftX)
+            floorConfig.liftY = parseFloat(data.liftY)
+            floorConfig.pathSubD = parseInt(data.pathSubD)
+            floorConfig.evalPt = parseString(data.evalPt)
+
+            document.getElementById('gridDivisions').value = configFloors.gridDivisions
+            document.getElementById('cullCurveScaleFactor').value = configFloors.cullCurveScaleFactor
+            document.getElementById('minOfficeSize').value = configFloors.minOfficeSize
+            document.getElementById('liftX').value = configFloors.liftX
+            document.getElementById('liftY').value = configFloors.liftY
+            document.getElementById('pathSubD').value = configFloors.pathSubD
+            document.getElementById('evalPt').value = configFloors.evalPt
+        } else {
+            console.error('Failed to load config');
+        }
+    } catch (error) {
+        console.error('Error fetching config:', error);
+}
 }
 
 // Update the JSON config file
@@ -53,6 +93,22 @@ async function updateJsonFile() {
         console.log('Config updated successfully');
     } else {
         console.error('Failed to update config');
+    }
+}
+
+// Update the floor JSON config file
+async function updateFloorJsonFile() {
+    const response = await fetch('/update-floor-config', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(floorConfig, null, 2)
+    });
+    if (response.ok) {
+        console.log('Floor config updated successfully');
+    } else {
+        console.error('Failed to update floor config');
     }
 }
 

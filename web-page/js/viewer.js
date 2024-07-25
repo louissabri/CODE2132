@@ -44,7 +44,7 @@ plane.receiveShadow = true;
 scene.add(plane);
 
 // Load and update the facade model
-async function loadFacadeModel() {
+async function loadFloorsModel() {
     try {
         const modelResponse = await fetch('assets/facade.json');
         if (modelResponse.ok) {
@@ -136,7 +136,7 @@ window.updateAnalysisMeshVisibilityInViewer = function(isVisible) {
 window.updateFacadeVisibilityInViewer = function(isVisible) {
     isFacadeVisible = isVisible;
     if (isFacadeVisible) {
-        loadFacadeModel();
+        loadFloorsModel();
     } else if (loadedModel) {
         scene.remove(loadedModel);
         renderer.render(scene, camera);
@@ -146,7 +146,7 @@ window.updateFacadeVisibilityInViewer = function(isVisible) {
 // Refresh model and analysis
 window.refreshModelAndAnalysis = async function() {
     if (isFacadeVisible) {
-        await loadFacadeModel();
+        await loadFloorsModel();
     }
     if (isAnalysisVisible) {
         await loadAnalysisMesh();
@@ -159,7 +159,7 @@ window.refreshModelAndAnalysis = async function() {
 // Combined function to update model and analysis
 async function updateModelAndAnalysis() {
     if (isFacadeVisible) {
-        await loadFacadeModel();
+        await loadFloorsModel();
     }
 
     // Load and update the analysis data
