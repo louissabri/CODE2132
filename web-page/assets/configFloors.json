@@ -1,0 +1,9 @@
+{
+"gridDivisions": 7,
+"cullCurveScaleFactor": 0.75,
+"minOfficeSize": 13,
+"liftX": 1.4,
+"liftY": 1.6,
+"pathSubD": 200,
+"evalPt": "{0.24, 0.82, 0}"
+}
