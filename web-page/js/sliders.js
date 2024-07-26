@@ -18,7 +18,7 @@ let configFloors = {
     liftY: 1.6,
     pathSubD: 200,
     evalPt: "{0.24, 0.82, 0}"
-    };
+};
 
 // Load existing config from config.json
 async function loadConfig() {
@@ -39,6 +39,9 @@ async function loadConfig() {
             document.getElementById('attractorPtSeed').value = config.attractorPtSeed;
             document.getElementById('attractorPtStrength').value = config.attractorPtStrength;
             document.getElementById('value1').textContent = config.floorHeight;
+            document.getElementById('value2').textContent = config.floorNum;
+            document.getElementById('value3').textContent = config.attractorPtSeed;
+            document.getElementById('value4').textContent = config.attractorPtStrength;
 
             updateRunAnalysisButton();
             updateToggleButtonState('toggleAnalysisButton', config.showAnalysis, 'Show Analysis', 'Hide Analysis');
@@ -49,35 +52,40 @@ async function loadConfig() {
     } catch (error) {
         console.error('Error fetching config:', error);
     }
-    }
+}
 
 // Load existing floors config from configFloors.json
-async function loadConfig() {
+async function loadFloorConfig() {
     try {
-        const response = await fetch('assets/config.json');
+        const response = await fetch('assets/config-floors.json');
         if (response.ok) {
             const data = await response.json();
-            floorConfig.gridDivisions = parseInt(data.gridDivisions)
-            floorConfig.cullCurveScaleFactor = parseFloat(data.cullCurveScaleFactor)
-            floorConfig.minOfficeSize = parseInt(data.minOfficeSize)
-            floorConfig.liftX = parseFloat(data.liftX)
-            floorConfig.liftY = parseFloat(data.liftY)
-            floorConfig.pathSubD = parseInt(data.pathSubD)
-            floorConfig.evalPt = parseString(data.evalPt)
+            configFloors.gridDivisions = parseInt(data.gridDivisions, 10);
+            configFloors.cullCurveScaleFactor = parseFloat(data.cullCurveScaleFactor);
+            configFloors.minOfficeSize = parseFloat(data.minOfficeSize);
+            configFloors.liftX = parseFloat(data.liftX);
+            configFloors.liftY = parseFloat(data.liftY);
+            configFloors.pathSubD = parseInt(data.pathSubD, 10);
+            configFloors.evalPt = data.evalPt;
 
-            document.getElementById('gridDivisions').value = configFloors.gridDivisions
-            document.getElementById('cullCurveScaleFactor').value = configFloors.cullCurveScaleFactor
-            document.getElementById('minOfficeSize').value = configFloors.minOfficeSize
-            document.getElementById('liftX').value = configFloors.liftX
-            document.getElementById('liftY').value = configFloors.liftY
-            document.getElementById('pathSubD').value = configFloors.pathSubD
-            document.getElementById('evalPt').value = configFloors.evalPt
+            document.getElementById('gridDivisions').value = configFloors.gridDivisions;
+            document.getElementById('cullCurveScaleFactor').value = configFloors.cullCurveScaleFactor;
+            document.getElementById('minOfficeSize').value = configFloors.minOfficeSize;
+            document.getElementById('liftX').value = configFloors.liftX;
+            document.getElementById('liftY').value = configFloors.liftY;
+            document.getElementById('pathSubD').value = configFloors.pathSubD;
+            document.getElementById('value1').textContent = configFloors.gridDivisions;
+            document.getElementById('value2').textContent = configFloors.cullCurveScaleFactor;
+            document.getElementById('value3').textContent = configFloors.minOfficeSize;
+            document.getElementById('value4').textContent = configFloors.liftX;
+            document.getElementById('value5').textContent = configFloors.liftY;
+            document.getElementById('value6').textContent = configFloors.pathSubD;
         } else {
-            console.error('Failed to load config');
+            console.error('Failed to load floor config');
         }
     } catch (error) {
-        console.error('Error fetching config:', error);
-}
+        console.error('Error fetching floor config:', error);
+    }
 }
 
 // Update the JSON config file
@@ -103,7 +111,7 @@ async function updateFloorJsonFile() {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(floorConfig, null, 2)
+        body: JSON.stringify(configFloors, null, 2)
     });
     if (response.ok) {
         console.log('Floor config updated successfully');
@@ -132,6 +140,46 @@ document.getElementById('attractorPtStrength').addEventListener('input', functio
     document.getElementById('value4').textContent = event.target.value;
     config.attractorPtStrength = parseFloat(event.target.value);
 });
+
+// Slider functionality for floor config
+document.getElementById('gridDivisions').addEventListener('input', function(event) {
+    document.getElementById('value1').textContent = event.target.value;
+    configFloors.gridDivisions = parseInt(event.target.value, 10);
+    updateFloorJsonFile();
+});
+
+document.getElementById('cullCurveScaleFactor').addEventListener('input', function(event) {
+    document.getElementById('value2').textContent = event.target.value;
+    configFloors.cullCurveScaleFactor = parseFloat(event.target.value);
+    updateFloorJsonFile();
+});
+
+document.getElementById('minOfficeSize').addEventListener('input', function(event) {
+    document.getElementById('value3').textContent = event.target.value;
+    configFloors.minOfficeSize = parseFloat(event.target.value);
+    updateFloorJsonFile();
+});
+
+document.getElementById('liftX').addEventListener('input', function(event) {
+    document.getElementById('value4').textContent = event.target.value;
+    configFloors.liftX = parseFloat(event.target.value);
+    updateFloorJsonFile();
+});
+
+document.getElementById('liftY').addEventListener('input', function(event) {
+    document.getElementById('value5').textContent = event.target.value;
+    configFloors.liftY = parseFloat(event.target.value);
+    updateFloorJsonFile();
+});
+
+document.getElementById('pathSubD').addEventListener('input', function(event) {
+    document.getElementById('value6').textContent = event.target.value;
+    configFloors.pathSubD = parseInt(event.target.value, 10);
+    updateFloorJsonFile();
+});
+
+// Load floor config on page load
+loadFloorConfig();
 
 // Save settings button
 document.getElementById('saveButton').addEventListener('click', function() {

@@ -36,9 +36,22 @@ app.post('/update-config', (req, res) => {
             if (sseResponse) {
                 sseResponse.write('event: model-update\n');
                 sseResponse.write('data: Model updated\n\n');
-                // Removed res.flush
             }
         }, 1000); // Adjust delay as needed
+    });
+});
+
+// Endpoint to handle updating the floor config file
+app.post('/update-floor-config', (req, res) => {
+    const configFloors = req.body;
+
+    fs.writeFile(path.join(__dirname, 'assets/config-floors.json'), JSON.stringify(configFloors, null, 2), (err) => {
+        if (err) {
+            console.error('Failed to write floor config:', err);
+            res.status(500).send('Failed to write floor config');
+            return;
+        }
+        res.send('Floor config updated successfully');
     });
 });
 
@@ -57,7 +70,6 @@ app.get('/events', (req, res) => {
         debounceFileWatcher(() => {
             res.write('event: model-update\n');
             res.write('data: Model updated\n\n');
-            // Removed res.flush
         }, 1000); // Adjust delay as needed
     });
 
