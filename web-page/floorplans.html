@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    <title>Facade Analysis Viewer</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="floorplans.html">Floor Plans</a>
+            <a href="inspiration.html">Inspiration</a>
+            <a href="sources.html">Sources</a>
+        </div>
+        <div class="social-links">
+            <a href="https://github.com/louissabri/CODE2132" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://www.instagram.com/louissabrii" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/louissabri" target="_blank"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </div>
+    <header>
+        <h1>Floor Plan Analysis Viewer</h1>
+        <p>Woah! Check out this sick Floor Plan!</p>
+    </header>
+    <main>
+        <div id="viewer-container">
+            <div id="legend">
+                <h2>Legend</h2>
+                <ul>
+                    <li><span class="legend-color" style="background-color: #ffa6a6;"></span>Meeting</li>
+                    <li><span class="legend-color" style="background-color: #d0ff65;"></span>Bathrooms</li>
+                    <li><span class="legend-color" style="background-color: #ffffc1;"></span>Kitchen</li>
+                    <li><span class="legend-color" style="background-color: #ffc1ff;"></span>Staircase</li>
+                    <li><span class="legend-color" style="background-color: #b8ffff;"></span>Lift</li>
+                </ul>
+            </div>
+            <div id="viewer"></div>
+        </div>
+        <aside id="info">
+            <section id="controls">
+                <h2>Adjust Floor Plan Parameters</h2>
+                <div>
+                    <label for="gridDivsNum">Number of Grid Divisions:</label>
+                    <input type="range" id="gridDivsNum" name="Number of Grid Divisions" min="1" max="20" step="1">
+                    <span id="value1">5</span>
+                </div>
+                <div>
+                    <label for="cullCrvScale">Cull Curve Scale Factor:</label>
+                    <input type="range" id="cullCrvScale" name="Cull Curve Scale Factor" min="0" max="1" step="0.01" value="0.85">
+                    <span id="value2">0.85</span>
+                </div>
+                <div>
+                    <label for="minOfficeSize">Minimum Office Size (sqm):</label>
+                    <input type="range" id="minOfficeSize" name="Minimum Office Size (sqm)" min="0" max="20" value="0">
+                    <span id="value3">0</span>
+                </div>
+                <div>
+                    <label for="liftX">Lift Size X (m):</label>
+                    <input type="range" id="liftX" name="Lift Size X (m)" min="0" max="5" step="0.1" value="1.4">
+                    <span id="value4">1.4</span>
+                </div>
+                <div>
+                    <label for="liftY">Lift Size Y (m):</label>
+                    <input type="range" id="liftY" name="Lift Size Y (m)" min="0" max="5" step="0.1" value="1.6">
+                    <span id="value5">1.6</span>
+                </div>
+                <div>
+                    <label for="pathSubD">Fire Path Analysis Subdivisions:</label>
+                    <input type="range" id="pathSubD" name="Fire Path Analysis Subdivisions" min="0" max="500" step="1" value="200">
+                    <span id="value6">200</span>
+                </div>
+                <button id="saveButton">Save Settings</button>
+                <button id="refreshButton">Refresh Model</button>
+            </section>
+        </aside>
+    </main>
+    <footer>
+        <p>This project includes code generated with the assistance of ChatGPT, an AI language model developed by OpenAI.</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/pmrem/PMREMGenerator.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/pmrem/PMREMCubeUVPacker.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/pmrem/PMREMCubeUVRenderer.js"></script>
+    <script src="js/floorsViewer.js"></script>
+    <script src="js/floorsSliders.js"></script>
+</body>
+</html>

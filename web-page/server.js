@@ -36,7 +36,28 @@ app.post('/update-config', (req, res) => {
             if (sseResponse) {
                 sseResponse.write('event: model-update\n');
                 sseResponse.write('data: Model updated\n\n');
-                // Removed res.flush
+            }
+        }, 1000); // Adjust delay as needed
+    });
+});
+
+// Endpoint to handle updating the floorsConfig file
+app.post('/update-floorsConfig', (req, res) => {
+    const floorsConfig = req.body;
+
+    fs.writeFile(path.join(__dirname, 'assets/floorsConfig.json'), JSON.stringify(floorsConfig, null, 2), (err) => {
+        if (err) {
+            console.error('Failed to write floorsConfig:', err);
+            res.status(500).send('Failed to write floorsConfig');
+            return;
+        }
+        res.send('floorsConfig updated successfully');
+
+        // Notify the client after writing the file
+        debounceFileWatcher(() => {
+            if (sseResponse) {
+                sseResponse.write('event: model-update\n');
+                sseResponse.write('data: Model updated\n\n');
             }
         }, 1000); // Adjust delay as needed
     });

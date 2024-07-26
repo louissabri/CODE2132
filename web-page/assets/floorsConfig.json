@@ -1,0 +1,8 @@
+{
+  "gridDivsNum": 5,
+  "cullCrvScale": 0.85,
+  "minOfficeSize": 0,
+  "liftX": 1.4,
+  "liftY": 1.6,
+  "pathSubD": 200
+}
