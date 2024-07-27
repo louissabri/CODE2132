@@ -6,6 +6,19 @@ const controls = new THREE.OrbitControls(camera, renderer.domElement);
 let loadedModel = null;
 let analysisMesh = null;
 
+document.getElementById('dismiss').addEventListener('click', function() {
+    document.getElementById('popup').style.display = 'none';
+    localStorage.setItem('cookiesAccepted', 'true'); // Store the user's acceptance
+});
+
+window.onload = function() {
+    if (localStorage.getItem('cookiesAccepted') !== 'true') { // Check if cookiesAccepted is not set to 'true'
+        document.getElementById('popup').style.display = 'flex'; // Show the popup
+    } else {
+        document.getElementById('popup').style.display = 'none'; // Hide the popup if already accepted
+    }
+};
+
 function resizeRenderer() {
     const container = document.getElementById('viewer');
     const width = container.clientWidth;
@@ -70,6 +83,29 @@ async function loadFloorsModel() {
     }
 }
 
+// Load analysis data
+async function loadWalkAnalysisData() {
+    try {
+        const response = await fetch('assets/walkAnalysis.json');
+        if (response.ok) {
+            const analysisData = await response.json();
+            document.getElementById('maxWalk').textContent = `${analysisData["maxWalk"].toFixed(2)} m`;
+            document.getElementById('maxWalkSpeed').textContent = `${analysisData["maxWalkSpeed"].toFixed(2)} seconds`;
+            document.getElementById('minWalk').textContent = `${analysisData["minWalk"].toFixed(2)} m`;
+            document.getElementById('minWalkSpeed').textContent = `${analysisData["minWalkSpeed"].toFixed(2)} seconds`;
+        } else {
+            console.error('Failed to load walk analysis data');
+        }
+    } catch (error) {
+        console.error('Error fetching walk analysis data:', error);
+    }
+}
+
+// Call loadWalkAnalysisData on page load
+document.addEventListener('DOMContentLoaded', () => {
+    loadWalkAnalysisData();
+});
+
 // Set initial states
 let isFloorsVisible = true;
 
@@ -109,7 +145,7 @@ sse.addEventListener('model-update', () => {
 });
 
 // Orbit Controls
-camera.position.set(0, 100, 0);
+camera.position.set(0, 70, 0);
 controls.update();
 
 function animate() {

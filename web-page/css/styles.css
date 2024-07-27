@@ -12,6 +12,44 @@ body {
     overflow-x: hidden;
 }
 
+.popup {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40%; /* Adjusted to smaller width */
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 15px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    border-radius: 8px; /* Match the document style */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* Match the document style */
+}
+
+.popup p {
+    margin: 0;
+    flex-grow: 1; /* Allow text to take available space */
+}
+
+.popup button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 10px; /* Space between text and button */
+}
+
+.popup button:hover {
+    background-color: #3e91eb;
+}
+
+
 /* Navbar Styling */
 .navbar {
     position: sticky;

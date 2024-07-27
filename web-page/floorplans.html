@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
+    <div id="popup" class="popup">
+        <p>Sliders do not write to config correctly. Edit floorsConfig.json to test functionality</p>
+        <button id="dismiss">Dismiss</button>
+    </div>
     <div class="navbar">
         <div class="nav-links">
             <a href="index.html">Home</a>
@@ -36,6 +40,7 @@
                     <li><span class="legend-color" style="background-color: #ffffc1;"></span>Kitchen</li>
                     <li><span class="legend-color" style="background-color: #ffc1ff;"></span>Staircase</li>
                     <li><span class="legend-color" style="background-color: #b8ffff;"></span>Lift</li>
+                    <li><span class="legend-color" style="background-color: #000000;"></span>Shortest Walk To Fire Escape</li>
                 </ul>
             </div>
             <div id="viewer"></div>
@@ -75,6 +80,34 @@
                 </div>
                 <button id="saveButton">Save Settings</button>
                 <button id="refreshButton">Refresh Model</button>
+            </section>
+            <section id="analysis">
+                <h2>Model Analysis Outputs</h2>
+                <div class="analysis-item">
+                    <span class="analysis-label">Maximum Distance To Fire Escape:</span>
+                    <span class="analysis-value" id="maxWalk">0</span>
+                </div>
+                <div class="analysis-item">
+                    <span class="analysis-label">Maximum Time To Walk To Fire Escape:</span>
+                    <span class="analysis-value" id="maxWalkSpeed">0</span>
+                    <a href="https://doi.org/10.1007/s00221-007-0917-0" target="_blank">(Source)</a>
+                </div>
+                <div class="analysis-item">
+                    <span class="analysis-label">Minimum Distance To Fire Escape:</span>
+                    <span class="analysis-value" id="minWalk">0</span>
+                </div>
+                <div class="analysis-item">
+                    <span class="analysis-label">Minimum Time To Walk To Fire Escape:</span>
+                    <span class="analysis-value" id="minWalkSpeed">0 </span>
+                    <a href="https://doi.org/10.1007/s00221-007-0917-0" target="_blank">(Source)</a>
+                </div>
+                <!---
+                <div class="analysis-item">
+                    <span class="analysis-label">Cost</span>
+                    <span >$1,000,000</span>
+                    <a href="https://www.youtube.com/watch?v=WY-mO7E1FmI" target="_blank">(Source)</a>
+                </div>
+                -->
             </section>
         </aside>
     </main>
