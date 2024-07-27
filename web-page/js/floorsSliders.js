@@ -54,25 +54,25 @@ async function updateJsonFile() {
 // Slider functionality
 document.getElementById('gridDivsNum').addEventListener('input', function(event) {
     document.getElementById('value1').textContent = event.target.value;
-    floorsConfig.floorHeight = parseFloat(event.target.value);
+    floorsConfig.gridDivsNum = parseInt(event.target.value);
     console.log('updated gridDivsNum:', floorsConfig.gridDivsNum); // Debugging
 });
 
 document.getElementById('cullCrvScale').addEventListener('input', function(event) {
     document.getElementById('value2').textContent = event.target.value;
-    floorsConfig.floorNum = parseInt(event.target.value, 10);
+    floorsConfig.cullCrvScale = parseFloat(event.target.value, 10);
     console.log('updated cullCrvScale:', floorsConfig.cullCrvScale); // Debugging
 });
 
 document.getElementById('minOfficeSize').addEventListener('input', function(event) {
     document.getElementById('value3').textContent = event.target.value;
-    floorsConfig.attractorPtSeed = parseInt(event.target.value, 10);
+    floorsConfig.minOfficeSize = parseInt(event.target.value, 10);
     console.log('updated minOfficeSize:', floorsConfig.minOfficeSize); // Debugging
 });
 
 document.getElementById('liftX').addEventListener('input', function(event) {
     document.getElementById('value4').textContent = event.target.value;
-    floorsConfig.attractorPtStrength = parseFloat(event.target.value);
+    floorsConfig.liftX = parseFloat(event.target.value);
     console.log('updated liftX:', floorsConfig.liftX); // Debugging
 });
 
@@ -84,7 +84,7 @@ document.getElementById('liftY').addEventListener('input', function(event) {
 
 document.getElementById('pathSubD').addEventListener('input', function(event) {
     document.getElementById('value6').textContent = event.target.value;
-    floorsConfig.attractorPtStrength = parseInt(event.target.value);
+    floorsConfig.liftY = parseInt(event.target.value);
     console.log('updated pathSubD:', floorsConfig.pathSubD); // Debugging
 });
 
