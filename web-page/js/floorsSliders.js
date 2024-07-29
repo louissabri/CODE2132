@@ -78,13 +78,13 @@ document.getElementById('liftX').addEventListener('input', function(event) {
 
 document.getElementById('liftY').addEventListener('input', function(event) {
     document.getElementById('value5').textContent = event.target.value;
-    floorsConfig.attractorPtStrength = parseFloat(event.target.value);
+    floorsConfig.liftY = parseFloat(event.target.value);
     console.log('updated liftY:', floorsConfig.liftY); // Debugging
 });
 
 document.getElementById('pathSubD').addEventListener('input', function(event) {
     document.getElementById('value6').textContent = event.target.value;
-    floorsConfig.liftY = parseInt(event.target.value);
+    floorsConfig.pathSubD = parseInt(event.target.value);
     console.log('updated pathSubD:', floorsConfig.pathSubD); // Debugging
 });
 

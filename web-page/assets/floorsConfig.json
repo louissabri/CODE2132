@@ -1,6 +1,6 @@
 {
-  "gridDivsNum": 10,
-  "cullCrvScale": 0.36,
+  "gridDivsNum": 5,
+  "cullCrvScale": 0.85,
   "minOfficeSize": 9,
   "liftX": 1.4,
   "liftY": 1.6,
