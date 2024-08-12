@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSM Data Downloader</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css"/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
+    <script src="js/osmtogeojson.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="floorplans.html">Floor Plans</a>
+            <a href="map.html">Map</a>
+            <a href="inspiration.html">Inspiration</a>
+            <a href="sources.html">Sources</a>
+        </div>
+        <div class="social-links">
+            <a href="https://github.com/louissabri/CODE2132" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://www.instagram.com/louissabrii" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/louissabri" target="_blank"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </div>
+<div id="header">
+    <h1>OSM Data Downloader</h1>
+    <p>Select a region to download highway, building, and transport data.</p>
+</div>
+<main>
+    <div id="map-container-container">
+        <div id="map-container">
+            <div id="map"></div>
+        </div>
+        <div id="map-controls">
+            <p>Click to select a point:</p>
+            <div id="selection-box">
+                <div id="clickable-box"></div>
+                <div id="selected-point"></div>
+            </div>
+            <div id="coordinates">
+                <p>X: <span id="xCoordValue">0</span></p>
+                <p>Y: <span id="yCoordValue">0</span></p>
+            </div>
+            <button id="runAnalysis" class="action-button">Run Analysis</button>
+        </div>
+    </div>
+</main>
+<footer>
+    <p>This project includes code generated with the assistance of ChatGPT, an AI language model developed by OpenAI.</p>
+</footer>
+<script src="js/map.js"></script>
+</body>
+</html>

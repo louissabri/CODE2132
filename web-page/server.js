@@ -4,13 +4,14 @@ const fs = require('fs');
 const path = require('path');
 
 const app = express();
-const port = 2000; // You can change this port if necessary
+const PORT = process.env.PORT || 2000; // Default to 2000, can be overridden by environment
 
 // Middleware to parse JSON bodies
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
 // Serve static files from the current directory
-app.use(express.static(__dirname));
+app.use(express.static(path.join(__dirname)));
 
 // Debounced file watchers to prevent rapid calls
 let fileWatcherTimeout;
@@ -18,6 +19,35 @@ function debounceFileWatcher(callback, delay) {
     clearTimeout(fileWatcherTimeout);
     fileWatcherTimeout = setTimeout(callback, delay);
 }
+
+// Endpoints for saving data
+app.post('/save-osm-highways', (req, res) => {
+    const data = req.body;
+    const filePath = path.join(__dirname, 'assets', 'highway_data.geojson');
+    fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+    res.sendStatus(200);
+});
+
+app.post('/save-osm-buildings', (req, res) => {
+    const data = req.body;
+    const filePath = path.join(__dirname, 'assets', 'building_data.geojson');
+    fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+    res.sendStatus(200);
+});
+
+app.post('/save-osm-transport', (req, res) => {
+    const data = req.body;
+    const filePath = path.join(__dirname, 'assets', 'transport_data.geojson');
+    fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+    res.sendStatus(200);
+});
+
+app.post('/save-point', (req, res) => {
+    const data = req.body;
+    const filePath = path.join(__dirname, 'assets', 'point.json');
+    fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+    res.sendStatus(200);
+});
 
 // Endpoint to handle updating the config file
 app.post('/update-config', (req, res) => {
@@ -37,7 +67,7 @@ app.post('/update-config', (req, res) => {
                 sseResponse.write('event: model-update\n');
                 sseResponse.write('data: Model updated\n\n');
             }
-        }, 1000); // Adjust delay as needed
+        }, 1000);
     });
 });
 
@@ -59,7 +89,7 @@ app.post('/update-floorsConfig', (req, res) => {
                 sseResponse.write('event: model-update\n');
                 sseResponse.write('data: Model updated\n\n');
             }
-        }, 1000); // Adjust delay as needed
+        }, 1000);
     });
 });
 
@@ -78,8 +108,7 @@ app.get('/events', (req, res) => {
         debounceFileWatcher(() => {
             res.write('event: model-update\n');
             res.write('data: Model updated\n\n');
-            // Removed res.flush
-        }, 1000); // Adjust delay as needed
+        }, 1000);
     });
 
     // Clean up watcher on client disconnect
@@ -96,6 +125,6 @@ app.get('*', (req, res) => {
 });
 
 // Start the server
-app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
 });

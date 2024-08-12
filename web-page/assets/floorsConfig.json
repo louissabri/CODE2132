@@ -1,7 +1,7 @@
 {
   "gridDivsNum": 5,
   "cullCrvScale": 0.85,
-  "minOfficeSize": 9,
+  "minOfficeSize": 3,
   "liftX": 1.4,
   "liftY": 1.6,
   "pathSubD": 50
