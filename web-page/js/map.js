@@ -70,78 +70,21 @@ document.addEventListener('DOMContentLoaded', function() {
         const bounds = layers[0].getBounds();
         const bbox = `${bounds.getSouthWest().lat},${bounds.getSouthWest().lng},${bounds.getNorthEast().lat},${bounds.getNorthEast().lng}`;
 
-        // Fetch highway data
-        fetch(`https://overpass-api.de/api/interpreter?data=[out:json];way["highway"](${bbox});out body;>;out skel qt;`)
-            .then(response => response.json())
-            .then(data => {
-                const highwaysGeojson = osmtogeojson(data);
-                const highwaysLayer = L.geoJSON(highwaysGeojson);
-                map.addLayer(highwaysLayer);
 
-                // Send highway data to server to save
-                fetch('/save-osm-highways', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(highwaysGeojson)
-                }).then(response => {
-                    if (response.ok) {
-                        console.log('Highway data saved successfully');
-                    } else {
-                        console.error('Failed to save highway data');
-                    }
-                });
-            });
-
-        // Fetch building data
-        fetch(`https://overpass-api.de/api/interpreter?data=[out:json];way["building"](${bbox});out body;>;out skel qt;`)
-            .then(response => response.json())
-            .then(data => {
-                const buildingsGeojson = osmtogeojson(data);
-                const buildingsLayer = L.geoJSON(buildingsGeojson);
-                map.addLayer(buildingsLayer);
-
-                // Send building data to server to save
-                fetch('/save-osm-buildings', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(buildingsGeojson)
-                }).then(response => {
-                    if (response.ok) {
-                        console.log('Building data saved successfully');
-                    } else {
-                        console.error('Failed to save building data');
-                    }
-                });
-            });
-
-        // Fetch transport data
-        fetch(`https://overpass-api.de/api/interpreter?data=[out:json];node["public_transport"="platform"](${bbox});out body;>;out skel qt;`)
-            .then(response => response.json())
-            .then(data => {
-                const transportGeojson = osmtogeojson(data);
-                const transportLayer = L.geoJSON(transportGeojson);
-                map.addLayer(transportLayer);
-
-                // Send transport data to server to save
-                fetch('/save-osm-transport', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(transportGeojson)
-                }).then(response => {
-                    if (response.ok) {
-                        console.log('Transport data saved successfully');
-                    } else {
-                        console.error('Failed to save transport data');
-                    }
-                });
-            });
-    });
+        // Save bbox to JSON file
+        fetch('/save-bbox', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ bbox: bbox })
+        }).then(response => {
+            if (response.ok) {
+                console.log('Bounding box saved successfully');
+            } else {
+                console.error('Failed to save bounding box');
+            }
+        });
 
     document.getElementById('runAnalysis').addEventListener('click', function() {
         const xCoord = document.getElementById('xCoordValue').textContent;
@@ -167,4 +110,5 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+});
 });

@@ -28,34 +28,6 @@ app.post('/save-bbox', (req, res) => {
     res.sendStatus(200);
 });
 
-app.post('/save-osm-highways', (req, res) => {
-    const data = req.body;
-    const filePath = path.join(__dirname, 'assets', 'highway_data.geojson');
-    fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
-    res.sendStatus(200);
-});
-
-app.post('/save-osm-buildings', (req, res) => {
-    const data = req.body;
-    const filePath = path.join(__dirname, 'assets', 'building_data.geojson');
-    fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
-    res.sendStatus(200);
-});
-
-app.post('/save-osm-transport', (req, res) => {
-    const data = req.body;
-    const filePath = path.join(__dirname, 'assets', 'transport_data.geojson');
-    fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
-    res.sendStatus(200);
-});
-
-app.post('/save-osm-amenity', (req, res) => {
-    const data = req.body;
-    const filePath = path.join(__dirname, 'assets', 'amenity_data.geojson');
-    fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
-    res.sendStatus(200);
-});
-
 app.post('/save-point', (req, res) => {
     const data = req.body;
     const filePath = path.join(__dirname, 'assets', 'point.json');
