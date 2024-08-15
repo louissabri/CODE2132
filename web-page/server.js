@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 const app = express();
-const PORT = process.env.PORT || 2000; // Default to 2000, can be overridden by environment
+const PORT = process.env.PORT || 2000; // Default to 3000, can be overridden by environment
 
 // Middleware to parse JSON bodies
 app.use(bodyParser.json({ limit: '50mb' }));
@@ -21,6 +21,13 @@ function debounceFileWatcher(callback, delay) {
 }
 
 // Endpoints for saving data
+app.post('/save-bbox', (req, res) => {
+    const data = req.body;
+    const filePath = path.join(__dirname, 'assets', 'bbox.json');
+    fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+    res.sendStatus(200);
+});
+
 app.post('/save-osm-highways', (req, res) => {
     const data = req.body;
     const filePath = path.join(__dirname, 'assets', 'highway_data.geojson');
@@ -38,6 +45,13 @@ app.post('/save-osm-buildings', (req, res) => {
 app.post('/save-osm-transport', (req, res) => {
     const data = req.body;
     const filePath = path.join(__dirname, 'assets', 'transport_data.geojson');
+    fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+    res.sendStatus(200);
+});
+
+app.post('/save-osm-amenity', (req, res) => {
+    const data = req.body;
+    const filePath = path.join(__dirname, 'assets', 'amenity_data.geojson');
     fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
     res.sendStatus(200);
 });
