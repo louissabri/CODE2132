@@ -133,18 +133,25 @@ main {
 }
 
 #viewer-container {
-    flex: 2;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #333;
+    justify-content: space-between;
+    width: 100%;
+    height: 30vh;
+    margin-bottom: 20px;
 }
 
 #viewer {
-    width: 90%;
-    height: 90%;
+    flex: 2;
     background-color: #444;
     border: 2px solid #f0f0f0;
+    margin-right: 20px;
+}
+
+#viewer-controls {
+    flex: 1;
+    background-color: #444;
+    border: 2px solid #f0f0f0;
+    padding: 10px;
 }
 
 #map-container-container {
@@ -158,6 +165,7 @@ main {
 #map-container {
     width: 100%;
     height: 50vh;
+    border: 2px solid #ccc;
     margin-bottom: 20px;
 }
 
@@ -169,16 +177,18 @@ main {
 }
 
 #map-controls {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-between;
     width: 100%;
+    background-color: #333;
+    padding: 10px;
+    border: 2px solid #f0f0f0;
+    text-align: center;
 }
 
 #selection-box {
-    width: 150px;
-    height: 150px;
+    width: 20vw; /* Scales with viewport width */
+    height: 20vw; /* Keep height equal to width for a square */
+    max-width: 150px; /* Maximum size limit */
+    max-height: 150px; /* Maximum size limit */
     background-color: #fff;
     border: 2px solid #ccc;
     position: relative;
@@ -196,7 +206,7 @@ main {
     width: 10px;
     height: 10px;
     background-color: red;
-    border-radius: 50%;
+    border-radius: 100%;
     position: absolute;
     display: none;
 }

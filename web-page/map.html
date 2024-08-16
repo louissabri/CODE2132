@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
     <title>OSM Data Downloader</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css"/>
@@ -14,7 +15,7 @@
 <body>
     <div class="navbar">
         <div class="nav-links">
-            <a href="index.html">Home</a>
+            <a href="index.html">Facade</a>
             <a href="floorplans.html">Floor Plans</a>
             <a href="map.html">Map</a>
             <a href="inspiration.html">Inspiration</a>
@@ -26,26 +27,66 @@
             <a href="https://www.linkedin.com/in/louissabri" target="_blank"><i class="fab fa-linkedin"></i></a>
         </div>
     </div>
-<div id="header">
+<header>
     <h1>OSM Data Downloader</h1>
-    <p>Select a region to download highway, building, and transport data.</p>
+    <p>Woah! Check out this sick map!</p>
+    <p>Select a region to download highway, building, and amenity data.</p>
+</header>
 </div>
 <main>
-    <div id="map-container-container">
-        <div id="map-container">
-            <div id="map"></div>
+    <div id="map-container">
+        <div id="map"></div>
+    </div>
+
+    <div id="viewer-container">
+        <div id="viewer"></div>
+        <aside id="info">
+            <section id="controls">
+                <h2>Adjust Map Parameters</h2>
+                <div>
+                    <label for="walkRadius">Walkable Amenity Radius Max Time (mins):</label>
+                    <input type="range" id="gridDivsNum" name="Number of Grid Divisions" min="1" max="20" step="1">
+                    <span id="value1">5</span>
+                </div>
+                <div>
+                    <label for="walkRadius">Walkable Amenity Radius Max Time (mins):</label>
+                    <input type="range" id="gridDivsNum" name="Number of Grid Divisions" min="1" max="20" step="1">
+                    <span id="value1">5</span>
+                </div>
+                <div>
+                    <label for="walkRadius">Walkable Amenity Radius Max Time (mins):</label>
+                    <input type="range" id="gridDivsNum" name="Number of Grid Divisions" min="1" max="20" step="1">
+                    <span id="value1">5</span>
+                </div>
+                <button id="saveButton">Save Settings</button>
+                <button id="refreshButton">Refresh Model</button>
+            </section>
+            <section id="analysis">
+                <h2>Model Analysis Outputs</h2>
+                <div class="analysis-item">
+                    <span class="analysis-label">Mean Walk Score:</span>
+                    <span class="analysis-value" id="maxWalk">0</span>
+                </div>
+                <div class="analysis-item">
+                    <span class="analysis-label">Max Walk Score:</span>
+                    <span class="analysis-value" id="maxWalk">0</span>
+                </div>
+                <div class="analysis-item">
+                    <span class="analysis-label">Min Walk Score:</span>
+                    <span class="analysis-value" id="maxWalk">0</span>
+                </div>
+            </section>
+        </aside> 
+    </div>
+    <div id="map-controls">
+        <p>Click to select a point. Building envelope will be placed at closest available block to point:</p>
+        <div id="selection-box">
+            <div id="clickable-box"></div>
+            <div id="selected-point"></div>
         </div>
-        <div id="map-controls">
-            <p>Click to select a point:</p>
-            <div id="selection-box">
-                <div id="clickable-box"></div>
-                <div id="selected-point"></div>
-            </div>
-            <div id="coordinates">
-                <p>X: <span id="xCoordValue">0</span></p>
-                <p>Y: <span id="yCoordValue">0</span></p>
-            </div>
-            <button id="runAnalysis" class="action-button">Run Analysis</button>
+        <div id="coordinates">
+            <p>X: <span id="xCoordValue">0</span></p>
+            <p>Y: <span id="yCoordValue">0</span></p>
         </div>
     </div>
 </main>
@@ -53,5 +94,11 @@
     <p>This project includes code generated with the assistance of ChatGPT, an AI language model developed by OpenAI.</p>
 </footer>
 <script src="js/map.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/pmrem/PMREMGenerator.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/pmrem/PMREMCubeUVPacker.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/pmrem/PMREMCubeUVRenderer.js"></script>
+<script src="js/mapViewer.js"></script>
 </body>
 </html>
