@@ -79,6 +79,28 @@ app.post('/update-floorsConfig', (req, res) => {
     });
 });
 
+// Endpoint to handle updating the mapConfig file
+app.post('/update-mapConfig', (req, res) => {
+    const floorsConfig = req.body;
+
+    fs.writeFile(path.join(__dirname, 'assets/mapConfig.json'), JSON.stringify(floorsConfig, null, 2), (err) => {
+        if (err) {
+            console.error('Failed to write mapConfig:', err);
+            res.status(500).send('Failed to write mapConfig');
+            return;
+        }
+        res.send('mapConfig updated successfully');
+
+        // Notify the client after writing the file
+        debounceFileWatcher(() => {
+            if (sseResponse) {
+                sseResponse.write('event: model-update\n');
+                sseResponse.write('data: Model updated\n\n');
+            }
+        }, 1000);
+    });
+});
+
 let sseResponse = null;
 
 // SSE endpoint for notifying about model changes

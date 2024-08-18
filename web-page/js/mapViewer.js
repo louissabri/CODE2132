@@ -63,45 +63,15 @@ async function loadFloorsModel() {
     }
 }
 
-// Load the analysis mesh
-async function loadAnalysisMesh() {
-    try {
-        const response = await fetch('assets/analysis_mesh.json');
-        if (response.ok) {
-            const meshData = await response.json();
-            const loader = new THREE.ObjectLoader();
-            if (analysisMesh) {
-                scene.remove(analysisMesh);
-            }
-            analysisMesh = loader.parse(meshData);
-            analysisMesh.traverse(function(child) {
-                if (child.isMesh) {
-                    child.castShadow = true;
-                    child.receiveShadow = true;
-                }
-            });
-            scene.add(analysisMesh);
-            renderer.render(scene, camera); // Ensure rendering after loading mesh
-        } else {
-            console.error('Failed to load analysis mesh');
-        }
-    } catch (error) {
-        console.error('Error fetching analysis mesh:', error);
-    }
-}
-
 // Load analysis data
 async function loadAnalysisData() {
     try {
-        const response = await fetch('assets/analysis_data.json');
+        const response = await fetch('assets/mapAnalysis.json');
         if (response.ok) {
             const analysisData = await response.json();
-            document.getElementById('numberGlassPanes').textContent = analysisData["number of glass panes"];
-            document.getElementById('totalCostPanels').textContent = `$${Number(analysisData["total cost of panels"]).toLocaleString()}`;
-            document.getElementById('totalEmbodiedCarbonPanels').textContent = `${Number(analysisData["total embodied carbon of panels"]).toLocaleString()} kg CO2e`;
-            document.getElementById('numberMetalFins').textContent = analysisData["number of metal fins"];
-            document.getElementById('totalCostMetalFins').textContent = `$${Number(analysisData["total cost of metal fins"]).toLocaleString()}`;
-            document.getElementById('totalEmbodiedCarbonFins').textContent = `${Number(analysisData["total embodied carbon of fins"]).toLocaleString()} kg CO2e`;
+            document.getElementById('meanWalkScore').textContent = analysisData["meanWalkScore"];
+            document.getElementById('maxWalkScore').textContent = analysisData["maxWalkScore"];
+            document.getElementById('minWalkScore').textContent = analysisData["minWalkScore"];
         } else {
             console.error('Failed to load analysis data');
         }
