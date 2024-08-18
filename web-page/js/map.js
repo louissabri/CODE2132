@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-    document.getElementById('runAnalysis').addEventListener('click', function() {
+    document.getElementById('saveButton').addEventListener('click', function() {
         const xCoord = document.getElementById('xCoordValue').textContent;
         const yCoord = document.getElementById('yCoordValue').textContent;
 

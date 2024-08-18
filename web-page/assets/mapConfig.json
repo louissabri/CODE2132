@@ -1,5 +1,5 @@
 {
-  "maxWalkTime": 22.8,
-  "maxBlockSize": 2920,
-  "minBlockSize": 1000
+  "maxWalkTime": 12.4,
+  "maxBlockSize": 1730,
+  "minBlockSize": 945
 }

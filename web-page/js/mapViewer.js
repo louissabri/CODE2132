@@ -84,28 +84,6 @@ async function loadAnalysisData() {
 let isAnalysisVisible = false;
 let isFacadeVisible = true;
 
-// Toggle analysis mesh visibility
-window.updateAnalysisMeshVisibilityInViewer = function(isVisible) {
-    isAnalysisVisible = isVisible;
-    if (isAnalysisVisible) {
-        loadAnalysisMesh();
-    } else if (analysisMesh) {
-        scene.remove(analysisMesh);
-        renderer.render(scene, camera);
-    }
-};
-
-// Toggle facade visibility
-window.updateFacadeVisibilityInViewer = function(isVisible) {
-    isFacadeVisible = isVisible;
-    if (isFacadeVisible) {
-        loadFloorsModel();
-    } else if (loadedModel) {
-        scene.remove(loadedModel);
-        renderer.render(scene, camera);
-    }
-};
-
 // Refresh model and analysis
 window.refreshModelAndAnalysis = async function() {
     if (isFacadeVisible) {
