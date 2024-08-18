@@ -10,7 +10,7 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
     <script src="js/osmtogeojson.js"></script>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/mapStyles.css">
 </head>
 <body>
     <div class="navbar">
@@ -27,78 +27,62 @@
             <a href="https://www.linkedin.com/in/louissabri" target="_blank"><i class="fab fa-linkedin"></i></a>
         </div>
     </div>
-<header>
-    <h1>OSM Data Downloader</h1>
-    <p>Woah! Check out this sick map!</p>
-    <p>Select a region to download highway, building, and amenity data.</p>
-</header>
-</div>
-<main>
-    <div id="map-container">
-        <div id="map"></div>
-    </div>
-
-    <div id="viewer-container">
-        <div id="viewer"></div>
-        <aside id="info">
-            <section id="controls">
-                <h2>Adjust Map Parameters</h2>
-                <div>
-                    <label for="walkRadius">Walkable Amenity Radius Max Time (mins):</label>
-                    <input type="range" id="gridDivsNum" name="Number of Grid Divisions" min="1" max="20" step="1">
-                    <span id="value1">5</span>
-                </div>
-                <div>
-                    <label for="walkRadius">Walkable Amenity Radius Max Time (mins):</label>
-                    <input type="range" id="gridDivsNum" name="Number of Grid Divisions" min="1" max="20" step="1">
-                    <span id="value1">5</span>
-                </div>
-                <div>
-                    <label for="walkRadius">Walkable Amenity Radius Max Time (mins):</label>
-                    <input type="range" id="gridDivsNum" name="Number of Grid Divisions" min="1" max="20" step="1">
-                    <span id="value1">5</span>
-                </div>
-                <button id="saveButton">Save Settings</button>
-                <button id="refreshButton">Refresh Model</button>
-            </section>
-            <section id="analysis">
-                <h2>Model Analysis Outputs</h2>
-                <div class="analysis-item">
-                    <span class="analysis-label">Mean Walk Score:</span>
-                    <span class="analysis-value" id="maxWalk">0</span>
-                </div>
-                <div class="analysis-item">
-                    <span class="analysis-label">Max Walk Score:</span>
-                    <span class="analysis-value" id="maxWalk">0</span>
-                </div>
-                <div class="analysis-item">
-                    <span class="analysis-label">Min Walk Score:</span>
-                    <span class="analysis-value" id="maxWalk">0</span>
-                </div>
-            </section>
-        </aside> 
-    </div>
-    <div id="map-controls">
-        <p>Click to select a point. Building envelope will be placed at closest available block to point:</p>
-        <div id="selection-box">
-            <div id="clickable-box"></div>
-            <div id="selected-point"></div>
+    <header>
+        <h1>OSM Data Downloader</h1>
+        <p>Woah! Check out this sick map!</p>
+        <p>Select a region to download highway, building, and amenity data.</p>
+    </header>
+    <main>
+        <div id="map-container">
+            <div id="map"></div>
         </div>
-        <div id="coordinates">
-            <p>X: <span id="xCoordValue">0</span></p>
-            <p>Y: <span id="yCoordValue">0</span></p>
-        </div>
-    </div>
-</main>
-<footer>
-    <p>This project includes code generated with the assistance of ChatGPT, an AI language model developed by OpenAI.</p>
-</footer>
-<script src="js/map.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/pmrem/PMREMGenerator.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/pmrem/PMREMCubeUVPacker.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/pmrem/PMREMCubeUVRenderer.js"></script>
-<script src="js/mapViewer.js"></script>
+        <section id="viewer-container">
+            <div id="legend">
+                <h2>Legend</h2>
+                <ul>
+                    <li><span class="legend-color" style="background-color: #ffa6a6;"></span>Meeting</li>
+                </ul>
+            </div>
+            <div id="viewer"></div>
+            <aside id="info">
+                <section id="controls">
+                    <h2>Adjust Map Parameters</h2>
+                    <h3>Click to select a point:</h3>
+                    <div id="selection-box">
+                        <div id="clickable-box"></div>
+                        <div id="selected-point"></div>
+                    </div>
+                    <div id="coordinates">
+                        <p>X: <span id="xCoordValue">0</span></p>
+                        <p>Y: <span id="yCoordValue">0</span></p>
+                    </div>
+                    <div>
+                        <label for="walkRadius">Walkable Amenity Radius Max Time (mins):</label>
+                        <input type="range" id="gridDivsNum" name="Number of Grid Divisions" min="1" max="20" step="1">
+                        <span id="value1">5</span>
+                    </div>
+                    <button id="saveButton">Save Settings</button>
+                    <button id="refreshButton">Refresh Model</button>
+                </section>
+                <section id="analysis">
+                    <h2>Model Analysis Outputs</h2>
+                    <div class="analysis-item">
+                        <span class="analysis-label">Mean Walk Score:</span>
+                        <span class="analysis-value" id="maxWalk">0</span>
+                    </div>
+                </section>
+            </aside>
+        </section>
+    </main>
+    <footer>
+        <p>This project includes code generated with the assistance of ChatGPT, an AI language model developed by OpenAI.</p>
+    </footer>
+    <script src="js/map.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/pmrem/PMREMGenerator.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/pmrem/PMREMCubeUVPacker.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/pmrem/PMREMCubeUVRenderer.js"></script>
+    <script src="js/mapViewer.js"></script>
 </body>
 </html>
